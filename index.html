@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التعلم للحياة | مبادرة ترشيد استهلاك الماء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Readex+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F8F9; --surface:#FFFFFF; --ink:#12303D; --muted:#5B7682; --line:#D5E4E8;
+  --water:#1F8FB0; --deep:#0F4C5C;
+  --nat:#1B6B45; --sci:#1F8FB0; --rel:#A8803A;
+  --nat-soft:#E3F1E9; --sci-soft:#E1F1F6; --rel-soft:#F5EEDF;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0C1D24; --surface:#122A33; --ink:#E4F0F3; --muted:#93AEB8; --line:#22404B;
+    --water:#4FB7D6; --deep:#7FD0E6;
+    --nat:#5CBF8A; --sci:#4FB7D6; --rel:#D7B270;
+    --nat-soft:#163A2B; --sci-soft:#143847; --rel-soft:#3A3122;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{font-family:'Readex Pro',sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;font-weight:300}
+h1,h2,h3{font-family:'El Messiri',sans-serif;font-weight:700;line-height:1.3}
+:focus-visible{outline:3px solid var(--water);outline-offset:3px;border-radius:6px}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+
+/* toolbar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:10px;padding-block:10px;overflow-x:auto}
+.bar nav{display:flex;gap:4px;flex:1}
+.bar nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:.85rem;padding:6px 10px;border-radius:20px}
+.bar nav a:hover{color:var(--ink);background:var(--surface)}
+.btn{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 14px;border-radius:20px;cursor:pointer;white-space:nowrap}
+.btn.on{background:var(--deep);color:var(--bg);border-color:var(--deep)}
+
+/* hero */
+.hero{position:relative;padding:90px 0 140px;text-align:center;overflow:hidden}
+.hero small{color:var(--muted);font-size:1rem}
+.hero h1{font-size:clamp(3.2rem,11vw,7rem);color:var(--deep);margin:10px 0 18px;letter-spacing:0}
+.verbs{display:flex;justify-content:center;gap:clamp(10px,3vw,28px);flex-wrap:wrap;margin-bottom:26px}
+.drop{width:86px;height:86px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--water);display:grid;place-items:center;
+  animation:fall .7s cubic-bezier(.3,1.4,.5,1) backwards}
+.drop span{transform:rotate(45deg);color:#fff;font-family:'El Messiri',serif;font-size:1.15rem}
+.drop:nth-child(2){animation-delay:.12s;background:color-mix(in srgb,var(--water) 85%,var(--deep))}
+.drop:nth-child(3){animation-delay:.24s;background:color-mix(in srgb,var(--water) 65%,var(--deep))}
+.drop:nth-child(4){animation-delay:.36s;background:var(--deep)}
+.drop:nth-child(4) span{color:var(--bg)}
+@keyframes fall{from{opacity:0;translate:0 -40px}}
+.hero p.sub{font-size:1.2rem;max-width:34em;margin:0 auto}
+.wave{position:absolute;inset:auto 0 0 0;height:110px;width:100%}
+.wave path{fill:var(--water);opacity:.12}
+.wave path+path{opacity:.18}
+
+/* sections */
+section.part{padding:64px 0;border-top:1px solid var(--line)}
+.head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.head b{font-family:'El Messiri',serif;font-size:2.4rem;color:var(--water);line-height:1}
+.head h2{font-size:1.9rem}
+.prose{max-width:62ch;font-size:1.05rem}
+.prose p+p{margin-top:12px}
+[data-edit][contenteditable="true"]{outline:1.5px dashed var(--water);outline-offset:4px;border-radius:4px;background:color-mix(in srgb,var(--water) 6%,transparent)}
+
+.verbs-explain{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-top:30px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.verbs-explain div{background:var(--surface);padding:20px}
+.verbs-explain h3{font-size:1.25rem;color:var(--deep)}
+
+.goal{display:grid;grid-template-columns:1fr 1.4fr;gap:28px}
+@media(max-width:720px){.goal{grid-template-columns:1fr}}
+.indicator{background:var(--deep);color:var(--bg);padding:28px;border-radius:18px}
+.indicator h3{font-size:1rem;opacity:.75;font-weight:500}
+.indicator p{font-family:'El Messiri',serif;font-size:1.45rem;line-height:1.55;margin-top:8px}
+.goal ul{list-style:none}
+.goal li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}
+.goal li::before{content:"";flex:none;width:10px;height:10px;margin-top:.7em;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--water)}
+
+/* timeline — the memorable piece */
+.tank{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px}
+.weeks{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;align-items:end}
+.wk{all:unset;cursor:pointer;position:relative;height:150px;border-radius:12px;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.wk .fill{position:absolute;inset:auto 0 0 0;height:0;background:var(--c);transition:height .9s cubic-bezier(.4,0,.2,1)}
+.tank.go .wk .fill{height:var(--h)}
+.wk em{position:relative;font-style:normal;font-size:.8rem;color:#fff;padding-bottom:8px;font-weight:600}
+.wk.dim{opacity:.35}
+.wk .m{position:absolute;top:8px;font-size:.7rem;color:var(--muted)}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.legend button{all:unset;cursor:pointer;text-align:center;padding:10px 6px;border-radius:12px;font-family:'El Messiri',serif;font-size:1.05rem;color:var(--c);background:var(--s);border:2px solid transparent}
+.legend button[aria-pressed="true"]{border-color:var(--c)}
+.legend small{display:block;font-family:'Readex Pro';font-size:.78rem;color:var(--muted)}
+.measure-note{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.85rem;margin-top:14px}
+.measure-note i{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.after{margin-top:12px;padding:12px 16px;border-radius:12px;border:1.5px dashed var(--line);color:var(--muted);font-size:.92rem}
+.detail{margin-top:22px;padding:24px;border-radius:18px;background:var(--s);border-inline-start:6px solid var(--c)}
+.detail h3{color:var(--c);font-size:1.5rem}
+.detail .when{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.detail ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.detail li{background:var(--surface);padding:8px 14px;border-radius:10px;font-size:.95rem}
+@media(max-width:600px){.wk{height:110px}.wk em{font-size:.68rem}.legend button{font-size:.9rem}}
+
+/* evidence */
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 16px;border-radius:20px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.slot{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.slot label{display:grid;place-items:center;aspect-ratio:4/3;cursor:pointer;color:var(--muted);font-size:.88rem;text-align:center;padding:10px;border-bottom:1px solid var(--line);background:repeating-linear-gradient(-45deg,transparent 0 10px,color-mix(in srgb,var(--line) 50%,transparent) 10px 11px)}
+.slot label img{width:100%;height:100%;object-fit:cover}
+.slot label:has(img){padding:0}
+.slot input{position:absolute;opacity:0;width:1px;height:1px}
+.slot p{padding:10px 12px;font-size:.88rem;min-height:2.6em}
+
+/* impact */
+.rounds{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end;height:240px;padding:0 4px;border-bottom:2px solid var(--line)}
+.col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.col .bar-v{width:70%;max-width:62px;border-radius:10px 10px 0 0;background:var(--c);height:0;transition:height .5s ease;min-height:2px}
+.col .val{font-family:'El Messiri',serif;font-size:1.1rem;margin-bottom:4px;color:var(--c)}
+.rlabels{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px;text-align:center}
+.rlabels div{font-size:.78rem;color:var(--muted)}
+.rlabels input{width:100%;max-width:80px;font:inherit;font-size:.95rem;text-align:center;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);margin-top:6px}
+.impact-sum{margin-top:22px;display:flex;gap:30px;flex-wrap:wrap}
+.impact-sum div{font-size:.9rem;color:var(--muted)}
+.impact-sum strong{display:block;font-family:'El Messiri',serif;font-size:2rem;color:var(--ink);font-weight:700}
+
+.recs{counter-reset:r;list-style:none;margin-top:20px;max-width:62ch}
+.recs li{counter-increment:r;padding:14px 0;border-bottom:1px solid var(--line);display:flex;gap:14px}
+.recs li::before{content:counter(r,arabic-indic);font-family:'El Messiri',serif;color:var(--water);font-size:1.3rem;line-height:1.5}
+
+footer{padding:50px 0 70px;text-align:center;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media print{
+  .bar,.tabs,.rlabels input{display:none}
+  body{background:#fff;color:#000}
+  section.part{break-inside:avoid;padding:30px 0}
+  .tank .wk .fill{height:var(--h)!important}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <nav aria-label="أقسام الملف">
+      <a href="#intro">التعريف</a><a href="#goal">المؤشر والهدف</a><a href="#plan">الخطة</a>
+      <a href="#evidence">الشواهد</a><a href="#impact">قياس الأثر</a><a href="#report">التقرير</a>
+    </nav>
+    <button class="btn" id="editBtn" aria-pressed="false">تعديل النصوص</button>
+    <button class="btn" onclick="window.print()">طباعة</button>
+  </div>
+</div>
+
+<!-- ١ الغلاف -->
+<header class="hero">
+  <div class="wrap">
+    <small data-edit>اسم المدرسة · العام الدراسي</small>
+    <h1>التعلم للحياة</h1>
+    <div class="verbs" aria-label="شعار المبادرة">
+      <div class="drop"><span>أجرّب</span></div>
+      <div class="drop"><span>أطبّق</span></div>
+      <div class="drop"><span>أحلّ</span></div>
+      <div class="drop"><span>أبتكر</span></div>
+    </div>
+    <p class="sub">مبادرة لترشيد استهلاك الماء، تُنفَّذ خلال فصل دراسي كامل عبر ثلاثة مجالات.</p>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 50 C240 10 480 90 720 50 S1200 10 1440 50 V110 H0Z"/>
+    <path d="M0 75 C300 40 520 105 760 72 S1180 45 1440 78 V110 H0Z"/>
+  </svg>
+</header>
+
+<main class="wrap">
+
+<!-- ٢ التعريف -->
+<section class="part" id="intro">
+  <div class="head"><b>٢</b><h2>التعريف بالمبادرة</h2></div>
+  <div class="prose" data-edit>
+    <p>«التعلم للحياة» مبادرة تربط ما تتعلمه الطالبة في الفصل بسلوك يومي حقيقي: ترشيد استهلاك الماء. تنتقل الطالبات فيها من المعرفة إلى التطبيق، فيجرّبن ويطبّقن ويبحثن عن حلول، ثم يبتكرن أفكارًا جديدة للحفاظ على الماء.</p>
+    <p>تمتد المبادرة على فصل دراسي كامل، وتمر بثلاثة مجالات متتالية، يستغرق كل مجال شهرًا: القيم الوطنية، ثم العلوم، ثم الدين. ويُقاس أثرها كل أسبوعين حتى نهاية الفصل.</p>
+  </div>
+  <div class="verbs-explain">
+    <div><h3>أجرّب</h3><p data-edit>تجارب عملية تكشف كيف نستهلك الماء وكيف نهدره.</p></div>
+    <div><h3>أطبّق</h3><p data-edit>سلوكيات ترشيد تمارسها الطالبة في المدرسة والبيت.</p></div>
+    <div><h3>أحلّ</h3><p data-edit>مواقف ومشكلات واقعية تبحث الطالبات عن حلول لها.</p></div>
+    <div><h3>أبتكر</h3><p data-edit>مقترحات وابتكارات من الطالبات لتقليل الهدر.</p></div>
+  </div>
+</section>
+
+<!-- ٣ المؤشر والهدف -->
+<section class="part" id="goal">
+  <div class="head"><b>٣</b><h2>الارتباط بالمؤشر والهدف</h2></div>
+  <div class="goal">
+    <div class="indicator">
+      <h3>المؤشر المرتبط</h3>
+      <p data-edit>اكتبي هنا نص المؤشر كما ورد في خطة المدرسة</p>
+    </div>
+    <div>
+      <h3 style="font-size:1.25rem;margin-bottom:6px">الهدف العام</h3>
+      <p class="prose" data-edit>تنمية وعي الطالبات بأهمية الماء وترسيخ سلوك الترشيد لديهن، من خلال ربطه بالقيم الوطنية والمعرفة العلمية والتوجيه الديني.</p>
+      <ul style="margin-top:14px">
+        <li data-edit>أن تدرك الطالبة مسؤوليتها الوطنية في الحفاظ على الماء.</li>
+        <li data-edit>أن تفسّر الطالبة علاقة الماء بالصحة والطاقة والبيئة.</li>
+        <li data-edit>أن تستشهد الطالبة بآيات وأحاديث تحث على عدم الإسراف.</li>
+        <li data-edit>أن تقترح الطالبة حلولًا وابتكارات لترشيد الاستهلاك.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ٤ الخطة التنفيذية -->
+<section class="part" id="plan">
+  <div class="head"><b>٤</b><h2>الخطة التنفيذية</h2></div>
+  <p class="prose" style="margin-bottom:22px">اختاري أسبوعًا أو مجالًا لعرض أنشطته.</p>
+  <div class="tank" id="tank">
+    <div class="weeks" id="weeks"></div>
+    <div class="legend" id="legend"></div>
+    <div class="measure-note"><i></i>نقطة قياس الأثر، كل أسبوعين</div>
+    <div class="after">بعد الأسبوع الرابع عشر: قياس الأثر النهائي والنتائج، ثم التقرير الختامي والتوصيات.</div>
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ٥ الشواهد -->
+<section class="part" id="evidence">
+  <div class="head"><b>٥</b><h2>شواهد الأنشطة والمشاريع</h2></div>
+  <p class="prose" style="margin-bottom:18px">اضغطي على أي إطار لإضافة صورة من التنفيذ، ثم اكتبي وصفها في وضع التعديل.</p>
+  <div class="tabs" role="tablist" id="evTabs"></div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<!-- ٦ قياس الأثر -->
+<section class="part" id="impact">
+  <div class="head"><b>٦</b><h2>قياس الأثر والنتائج</h2></div>
+  <p class="prose" style="margin-bottom:26px" data-edit>يُقاس الأثر كل أسبوعين: نسبة الطالبات الملتزمات بسلوكيات الترشيد. أدخلي النسبة لكل قياس ليظهر التغير.</p>
+  <div class="rounds" id="rounds"></div>
+  <div class="rlabels" id="rlabels"></div>
+  <div class="impact-sum">
+    <div><strong id="sFirst">–</strong>القياس الأول</div>
+    <div><strong id="sLast">–</strong>آخر قياس</div>
+    <div><strong id="sGain">–</strong>مقدار التحسن</div>
+  </div>
+</section>
+
+<!-- ٧ التقرير -->
+<section class="part" id="report">
+  <div class="head"><b>٧</b><h2>التقرير الختامي والتوصيات</h2></div>
+  <div class="prose" data-edit>
+    <p>نُفّذت مبادرة «التعلم للحياة» خلال الفصل الدراسي على ثلاثة مجالات، شارك فيها عدد ( ) من الطالبات. اكتبي هنا ملخص ما تحقق وأبرز ما لاحظتِه في سلوك الطالبات.</p>
+  </div>
+  <h3 style="font-size:1.3rem;margin-top:30px">التوصيات</h3>
+  <ol class="recs">
+    <li data-edit>تعميم المبادرة على بقية الصفوف في الفصل القادم.</li>
+    <li data-edit>تبنّي أفضل ابتكارات الطالبات وتطبيقها داخل المدرسة.</li>
+    <li data-edit>إشراك الأسرة في متابعة سلوك الترشيد في المنزل.</li>
+    <li data-edit>توسيع المبادرة لتشمل موارد أخرى كالكهرباء والغذاء.</li>
+  </ol>
+</section>
+
+</main>
+
+<footer data-edit>إعداد: اسم المعلمة · التعلم للحياة</footer>
+
+<script>
+let editing = false;
+const ar = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const ord = {3:'الثالث',4:'الرابع',5:'الخامس',6:'السادس',7:'السابع',8:'الثامن',9:'التاسع',10:'العاشر',11:'الحادي عشر',12:'الثاني عشر',13:'الثالث عشر',14:'الرابع عشر'};
+
+const domains = [
+  {id:'nat', name:'القيم الوطنية', weeks:[3,4,5,6], c:'--nat', s:'--nat-soft',
+   items:['لوحات توعوية','مقترحات الطالبات وابتكاراتهن']},
+  {id:'sci', name:'العلوم', weeks:[7,8,9,10], c:'--sci', s:'--sci-soft',
+   items:['دور الماء في الحد من الأمراض','دور الأملاح في الكهرباء','محطة تحلية المياه','الصحة والغذاء المتوازن','أثرك أخضر','ظاهرة الاحتباس الحراري']},
+  {id:'rel', name:'الدين', weeks:[11,12,13,14], c:'--rel', s:'--rel-soft',
+   items:['آيات قرآنية عن الماء وعدم الإسراف','استخدام نماذج من الأحاديث النبوية']}
+];
+const v = (name) => `var(${name})`;
+const domOf = w => domains.find(d => d.weeks.includes(w));
+
+/* ---------- plan ---------- */
+const weeksEl = document.getElementById('weeks'), legendEl = document.getElementById('legend'), detailEl = document.getElementById('detail');
+let active = null;
+
+for (let w = 3; w <= 14; w++){
+  const d = domOf(w), idx = d.weeks.indexOf(w);
+  const b = document.createElement('button');
+  b.className = 'wk'; b.dataset.d = d.id;
+  b.style.setProperty('--c', v(d.c));
+  b.style.setProperty('--h', (45 + idx*17) + '%');
+  b.setAttribute('aria-label', `الأسبوع ${ord[w]}، مجال ${d.name}`);
+  b.innerHTML = `<div class="fill"></div>${w % 2 === 0 ? '<span class="m" aria-hidden="true">●</span>' : ''}<em>${ar(w)}</em>`;
+  b.onclick = () => select(d.id);
+  weeksEl.appendChild(b);
+}
+domains.forEach(d => {
+  const b = document.createElement('button');
+  b.style.setProperty('--c', v(d.c)); b.style.setProperty('--s', v(d.s));
+  b.dataset.d = d.id; b.setAttribute('aria-pressed','false');
+  b.innerHTML = `${d.name}<small>الأسابيع ${ar(d.weeks[0])}–${ar(d.weeks[3])}</small>`;
+  b.onclick = () => select(d.id);
+  legendEl.appendChild(b);
+});
+function select(id){
+  active = id;
+  const d = domains.find(x => x.id === id);
+  document.querySelectorAll('.wk').forEach(el => el.classList.toggle('dim', el.dataset.d !== id));
+  legendEl.querySelectorAll('button').forEach(el => el.setAttribute('aria-pressed', el.dataset.d === id));
+  detailEl.style.setProperty('--c', v(d.c)); detailEl.style.setProperty('--s', v(d.s));
+  detailEl.innerHTML = `<h3>مرتبط ${d.name === 'الدين' ? 'بالدين' : d.name === 'العلوم' ? 'بالعلوم' : 'بالقيم الوطنية'}</h3>
+    <div class="when">من الأسبوع ${ord[d.weeks[0]]} إلى الأسبوع ${ord[d.weeks[3]]}، شهر كامل، مع قياسَين للأثر</div>
+    <ul>${d.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+}
+select('nat');
+new IntersectionObserver((e, o) => { if (e[0].isIntersecting){ document.getElementById('tank').classList.add('go'); o.disconnect(); } }, {threshold:.3})
+  .observe(document.getElementById('tank'));
+
+/* ---------- evidence ---------- */
+const evTabs = document.getElementById('evTabs'), gallery = document.getElementById('gallery');
+const evidence = {};
+domains.forEach(d => evidence[d.id] = d.items.map(i => ({cap:i, img:null})));
+let evActive = 'nat';
+domains.forEach(d => {
+  const b = document.createElement('button');
+  b.role = 'tab'; b.textContent = d.name; b.dataset.d = d.id;
+  b.style.setProperty('--c', v(d.c));
+  b.onclick = () => { evActive = d.id; renderGallery(); };
+  evTabs.appendChild(b);
+});
+function renderGallery(){
+  evTabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.d === evActive));
+  gallery.innerHTML = '';
+  evidence[evActive].forEach((s, i) => {
+    const el = document.createElement('div'); el.className = 'slot';
+    const id = `f-${evActive}-${i}`;
+    el.innerHTML = `<label for="${id}">${s.img ? `<img src="${s.img}" alt="${s.cap}">` : 'اضغطي لإضافة صورة'}</label>
+      <input type="file" accept="image/*" id="${id}"><p data-edit>${s.cap}</p>`;
+    el.querySelector('input').onchange = e => {
+      const f = e.target.files[0]; if (!f) return;
+      const r = new FileReader(); r.onload = () => { s.img = r.result; renderGallery(); }; r.readAsDataURL(f);
+    };
+    el.querySelector('p').oninput = e => s.cap = e.target.textContent;
+    gallery.appendChild(el);
+  });
+  applyEdit();
+}
+renderGallery();
+
+/* ---------- impact ---------- */
+const rounds = [[3,4],[5,6],[7,8],[9,10],[11,12],[13,14]];
+const vals = Array(6).fill(null);
+const roundsEl = document.getElementById('rounds'), rl = document.getElementById('rlabels');
+rounds.forEach((r, i) => {
+  const d = domOf(r[0]);
+  roundsEl.insertAdjacentHTML('beforeend', `<div class="col" style="--c:${v(d.c)}"><span class="val" id="v${i}"></span><div class="bar-v" id="b${i}"></div></div>`);
+  rl.insertAdjacentHTML('beforeend', `<div>الأسبوعان ${ar(r[0])} و${ar(r[1])}<br><input type="number" min="0" max="100" placeholder="٪" aria-label="نسبة القياس ${i+1}" data-i="${i}"></div>`);
+});
+rl.addEventListener('input', e => {
+  const i = +e.target.dataset.i; let n = parseFloat(e.target.value);
+  vals[i] = isNaN(n) ? null : Math.max(0, Math.min(100, n));
+  drawImpact();
+});
+function drawImpact(){
+  vals.forEach((n, i) => {
+    document.getElementById('b'+i).style.height = (n ?? 0) + '%';
+    document.getElementById('v'+i).textContent = n == null ? '' : ar(n) + '٪';
+  });
+  const filled = vals.filter(n => n != null);
+  const f = filled[0], l = filled[filled.length - 1];
+  document.getElementById('sFirst').textContent = f == null ? '–' : ar(f) + '٪';
+  document.getElementById('sLast').textContent = l == null ? '–' : ar(l) + '٪';
+  document.getElementById('sGain').textContent = filled.length < 2 ? '–' : (l - f >= 0 ? '+' : '') + ar(Math.round((l - f)*10)/10) + '٪';
+}
+
+/* ---------- edit mode ---------- */
+const editBtn = document.getElementById('editBtn');
+function applyEdit(){ document.querySelectorAll('[data-edit]').forEach(el => el.contentEditable = editing); }
+editBtn.onclick = () => {
+  editing = !editing;
+  editBtn.classList.toggle('on', editing);
+  editBtn.setAttribute('aria-pressed', editing);
+  editBtn.textContent = editing ? 'إنهاء التعديل' : 'تعديل النصوص';
+  applyEdit();
+};
+</script>
+</body>
+</html>
